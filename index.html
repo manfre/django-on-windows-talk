@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Django on Windows with Apache</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" media="print" href="theme/css/print.css">
+    <link rel="stylesheet" media="screen, projection" href="theme/css/screen.css">
+    
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="theme/js/slides.js"></script>
+    
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div id="blank"></div>
+  <div class="presentation">
+    <div id="current_presenter_notes">
+      <div id="presenter_note"></div>
+    </div>
+    <div class="slides">
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Django on Windows with Apache</h1></header>
+            
+            
+            <section><p>Michael Manfre</p>
+<p>Semiconductor Research Corporation</p>
+<blockquote>
+Pioneers in research collaboration ®</blockquote>
+<p>django-mssql</p>
+<blockquote>
+Django database backend for Microsoft SQL Server</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              1/7
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Why Windows?</h1></header>
+            
+            
+            <section><ul class="simple">
+<li>Windows shop<ul>
+<li>IT knowledge</li>
+</ul>
+</li>
+<li>Legacy Business Database on MS SQL<ul>
+<li>Triggers, user funcs, stored procs, SSIS, SSRS</li>
+<li>Replication not an option
+(tech limitations and historical business reasons)</li>
+</ul>
+</li>
+<li>Didn't have a choice</li>
+</ul>
+
+
+<h1>Why Not IIS, ASP.NET, PHP, etc?</h1>
+<ul class="simple">
+<li>Contact me after the talk</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              2/7
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Windows MPM Options</h1></header>
+            
+            
+            <section><ul class="simple">
+<li>mpm_winnt<ul>
+<li>One process, many threads</li>
+</ul>
+</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/7
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>What's Wrong With Threads?</h1></header>
+            
+            
+            <section><ul class="simple">
+<li>Uses more resources</li>
+<li>Most pages have lots of IO<ul>
+<li>Network (Request/Response)</li>
+<li>Cache</li>
+<li>Database</li>
+<li>Disk (Templates)</li>
+</ul>
+</li>
+<li>&quot;Understanding the GIL&quot; - David Beazley <a class="reference external" href="http://www.dabeaz.com/GIL/">http://www.dabeaz.com/GIL/</a><ul>
+<li>Threads release their lock when blocking for IO</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<dl class="docutils">
+<dt>Dear SRC,</dt>
+<dd>Congratulations on launching your new site. Sorry it buckled under non-peak load.</dd>
+<dt>Sincerely,</dt>
+<dd>Global Interpreter Lock</dd>
+</dl>
+</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/7
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>How We Worked Around It?</h1></header>
+            
+            
+            <section><ul class="simple">
+<li>Optimize slow pages</li>
+<li>Web farm on a box</li>
+<li>Load balancer<ul>
+<li>mod_proxy_balancer (on the box)</li>
+<li>HAProxy</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+&quot;I got a fever, and the only cure is more Apaches&quot;</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              5/7
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>It's Not All Bad</h1></header>
+            
+            
+            <section><blockquote>
+&quot;What is life without challenges?&quot; - Richard Castle</blockquote>
+<ul class="simple">
+<li>More fault tolerant</li>
+<li>Ready to scale</li>
+<li>Great learning experience</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              6/7
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Is There A Better Way?</h1></header>
+            
+            
+            <section><p>If you have ideas, questions, or comments, please contact me.</p>
+<p>Michael Manfre</p>
+<p>manfre on <a class="reference external" href="http://twitter.com/manfre">Twitter</a> | <a class="reference external" href="https://bitbucket.org/Manfre">Bitbucket</a> | <a class="reference external" href="https://github.com/manfre">Github</a> | Freenode</p>
+<p>Slides: <a class="reference external" href="http://bit.ly/dj12manfretalk">http://bit.ly/dj12manfretalk</a></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/7
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="toc" class="sidebar hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+      
+      <tr id="toc-row-1">
+        <th><a href="#slide1">Django on Windows with Apache</a></th>
+        <td><a href="#slide1">1</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-2">
+        <th><a href="#slide2">Why Windows?</a></th>
+        <td><a href="#slide2">2</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-3">
+        <th><a href="#slide3">Windows MPM Options</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-4">
+        <th><a href="#slide4">What's Wrong With Threads?</a></th>
+        <td><a href="#slide4">4</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-5">
+        <th><a href="#slide5">How We Worked Around It?</a></th>
+        <td><a href="#slide5">5</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-6">
+        <th><a href="#slide6">It's Not All Bad</a></th>
+        <td><a href="#slide6">6</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide7">Is There A Better Way?</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <div id="help" class="sidebar hidden">
+    <h2>Help</h2>
+    <table>
+      <caption>Help</caption>
+      <tr>
+        <th>Table of Contents</th>
+        <td>t</td>
+      </tr>
+      <tr>
+        <th>Exposé</th>
+        <td>ESC</td>
+      </tr>
+      <tr>
+        <th>Full screen slides</th>
+        <td>e</td>
+      </tr>
+      <tr>
+        <th>Presenter View</th>
+        <td>p</td>
+      </tr>
+      <tr>
+        <th>Source Files</th>
+        <td>s</td>
+      </tr>
+      <tr>
+        <th>Slide Numbers</th>
+        <td>n</td>
+      </tr>
+      <tr>
+        <th>Toggle screen blanking</th>
+        <td>b</td>
+      </tr>
+      <tr>
+        <th>Show/hide slide context</th>
+        <td>c</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th>Help</th>
+        <td>h</td>
+      </tr>
+    </table>
+  </div>
+  <script>main()</script>
+</body>
+</html>
