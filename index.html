@@ -28,14 +28,14 @@
     <title>Django on Windows with Apache</title>
     <!-- Styles -->
     
-    <link rel="stylesheet" media="print" href="theme/css/print.css">
-    <link rel="stylesheet" media="screen, projection" href="theme/css/screen.css">
+    <link rel="stylesheet" media="print" href="file://C:\projects\django-on-windows-talk\theme\css\print.css">
+    <link rel="stylesheet" media="screen, projection" href="file://C:\projects\django-on-windows-talk\theme\css\screen.css">
     
     
     <!-- /Styles -->
     <!-- Javascripts -->
     
-    <script type="text/javascript" src="theme/js/slides.js"></script>
+    <script type="text/javascript" src="file://C:\projects\django-on-windows-talk\theme\js\slides.js"></script>
     
     
     <!-- /Javascripts -->
@@ -57,9 +57,9 @@
             
             
             <section><p>Michael Manfre</p>
-<p>Semiconductor Research Corporation</p>
+<p>Semiconductor Research Corporation ®</p>
 <blockquote>
-Pioneers in research collaboration ®</blockquote>
+Pioneers in research collaboration ™</blockquote>
 <p>django-mssql</p>
 <blockquote>
 Django database backend for Microsoft SQL Server</blockquote></section>
@@ -78,7 +78,164 @@ Django database backend for Microsoft SQL Server</blockquote></section>
             </aside>
             
             <aside class="page_number">
-              1/7
+              1/11
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Semiconductor Research Corporation ®</h1></header>
+            
+            
+            <section><blockquote>
+<p>&quot;Semiconductor Research Corporation (SRC) is the world's leading technology research consortium.
+With member companies and university research programs spanning the globe, SRC plays an
+indispensable part in the R&amp;D strategies of the industry's most influential entities.
+SRC-sponsored university research is of the highest caliber and creates knowledge breakthroughs
+that will invent the industries of tomorrow.&quot;</p>
+<p class="attribution">&mdash;<a class="reference external" href="http://www.src.org/about/">http://www.src.org/about/</a></p>
+</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              2/11
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Web site purpose</h1></header>
+            
+            
+            <section><blockquote>
+<ul class="simple">
+<li>Knowledge transfer<ul>
+<li>Publications</li>
+<li>Reporting</li>
+<li>Track research progress</li>
+<li>Member feedback</li>
+</ul>
+</li>
+<li>Meetings &amp; events</li>
+<li>Student CV and recruitment</li>
+</ul>
+</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/11
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>SRC's current web site</h1></header>
+            
+            
+            <section><img alt="SRC homepage screenshot" src="file://C:\projects\django-on-windows-talk\images/homepage-screenshot.png" />
+
+
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <p>Previous distributions: Printed publications, Mailed CDs, Command line database.</p>
+<p>Generated VB6 files.</p>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/11
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Powered By</h1></header>
+            
+            
+            <section><blockquote>
+<ul class="simple">
+<li>Apache</li>
+<li>CruiseControl.net</li>
+<li>Django</li>
+<li>HAProxy (Ubuntu)</li>
+<li>Memcached</li>
+<li>Microsoft SQL Server</li>
+<li>nAnt</li>
+<li>PowerShell</li>
+<li>Windows</li>
+</ul>
+</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              5/11
             </aside>
           </footer>
         </div>
@@ -106,8 +263,7 @@ Django database backend for Microsoft SQL Server</blockquote></section>
 <li>Didn't have a choice</li>
 </ul>
 
-
-<h1>Why Not IIS, ASP.NET, PHP, etc?</h1>
+<h2>Why Not IIS, ASP.NET, PHP, etc?</h2>
 <ul class="simple">
 <li>Contact me after the talk</li>
 </ul></section>
@@ -126,7 +282,7 @@ Django database backend for Microsoft SQL Server</blockquote></section>
             </aside>
             
             <aside class="page_number">
-              2/7
+              6/11
             </aside>
           </footer>
         </div>
@@ -137,7 +293,7 @@ Django database backend for Microsoft SQL Server</blockquote></section>
         <div class="slide">
           <div class="inner">
             
-            <header><h1>Windows MPM Options</h1></header>
+            <header><h2>Windows MPM Options</h2></header>
             
             
             <section><ul class="simple">
@@ -161,7 +317,7 @@ Django database backend for Microsoft SQL Server</blockquote></section>
             </aside>
             
             <aside class="page_number">
-              3/7
+              7/11
             </aside>
           </footer>
         </div>
@@ -172,7 +328,7 @@ Django database backend for Microsoft SQL Server</blockquote></section>
         <div class="slide">
           <div class="inner">
             
-            <header><h1>What's Wrong With Threads?</h1></header>
+            <header><h2>What's Wrong With Threads?</h2></header>
             
             
             <section><ul class="simple">
@@ -212,7 +368,7 @@ Django database backend for Microsoft SQL Server</blockquote></section>
             </aside>
             
             <aside class="page_number">
-              4/7
+              8/11
             </aside>
           </footer>
         </div>
@@ -223,7 +379,7 @@ Django database backend for Microsoft SQL Server</blockquote></section>
         <div class="slide">
           <div class="inner">
             
-            <header><h1>How We Worked Around It?</h1></header>
+            <header><h2>How We Worked Around It?</h2></header>
             
             
             <section><ul class="simple">
@@ -252,7 +408,7 @@ Django database backend for Microsoft SQL Server</blockquote></section>
             </aside>
             
             <aside class="page_number">
-              5/7
+              9/11
             </aside>
           </footer>
         </div>
@@ -263,7 +419,7 @@ Django database backend for Microsoft SQL Server</blockquote></section>
         <div class="slide">
           <div class="inner">
             
-            <header><h1>It's Not All Bad</h1></header>
+            <header><h2>It's Not All Bad</h2></header>
             
             
             <section><blockquote>
@@ -288,7 +444,7 @@ Django database backend for Microsoft SQL Server</blockquote></section>
             </aside>
             
             <aside class="page_number">
-              6/7
+              10/11
             </aside>
           </footer>
         </div>
@@ -299,7 +455,7 @@ Django database backend for Microsoft SQL Server</blockquote></section>
         <div class="slide">
           <div class="inner">
             
-            <header><h1>Is There A Better Way?</h1></header>
+            <header><h2>Is There A Better Way?</h2></header>
             
             
             <section><p>If you have ideas, questions, or comments, please contact me.</p>
@@ -321,7 +477,7 @@ Django database backend for Microsoft SQL Server</blockquote></section>
             </aside>
             
             <aside class="page_number">
-              7/7
+              11/11
             </aside>
           </footer>
         </div>
@@ -342,39 +498,60 @@ Django database backend for Microsoft SQL Server</blockquote></section>
       
       
       <tr id="toc-row-2">
-        <th><a href="#slide2">Why Windows?</a></th>
+        <th><a href="#slide2">Semiconductor Research Corporation ®</a></th>
         <td><a href="#slide2">2</a></td>
       </tr>
       
       
       <tr id="toc-row-3">
-        <th><a href="#slide3">Windows MPM Options</a></th>
+        <th><a href="#slide3">Web site purpose</a></th>
         <td><a href="#slide3">3</a></td>
       </tr>
       
       
       <tr id="toc-row-4">
-        <th><a href="#slide4">What's Wrong With Threads?</a></th>
+        <th><a href="#slide4">SRC's current web site</a></th>
         <td><a href="#slide4">4</a></td>
       </tr>
       
       
       <tr id="toc-row-5">
-        <th><a href="#slide5">How We Worked Around It?</a></th>
+        <th><a href="#slide5">Powered By</a></th>
         <td><a href="#slide5">5</a></td>
       </tr>
       
       
       <tr id="toc-row-6">
-        <th><a href="#slide6">It's Not All Bad</a></th>
+        <th><a href="#slide6">Why Windows?</a></th>
         <td><a href="#slide6">6</a></td>
       </tr>
       
-      
-      <tr id="toc-row-7">
-        <th><a href="#slide7">Is There A Better Way?</a></th>
-        <td><a href="#slide7">7</a></td>
-      </tr>
+        
+        <tr id="toc-row-7" class="sub">
+          <th><a href="#slide7">Windows MPM Options</a></th>
+          <td><a href="#slide7">7</a></td>
+        </tr>
+        
+        <tr id="toc-row-8" class="sub">
+          <th><a href="#slide8">What's Wrong With Threads?</a></th>
+          <td><a href="#slide8">8</a></td>
+        </tr>
+        
+        <tr id="toc-row-9" class="sub">
+          <th><a href="#slide9">How We Worked Around It?</a></th>
+          <td><a href="#slide9">9</a></td>
+        </tr>
+        
+        <tr id="toc-row-10" class="sub">
+          <th><a href="#slide10">It's Not All Bad</a></th>
+          <td><a href="#slide10">10</a></td>
+        </tr>
+        
+        <tr id="toc-row-11" class="sub">
+          <th><a href="#slide11">Is There A Better Way?</a></th>
+          <td><a href="#slide11">11</a></td>
+        </tr>
+        
       
       
     </table>
