@@ -42,7 +42,6 @@ Web site purpose
   - Meetings & events
   - Student CV and recruitment
 
-
 ----
 
 SRC's current web site
@@ -66,12 +65,14 @@ Powered By
 
   - Apache
   - CruiseControl.net
-  - Django
+  - Django 1.4.1
   - HAProxy (Ubuntu)
   - Memcached
-  - Microsoft SQL Server
+  - Mercurial (Hg)
+  - Microsoft SQL Server 2008r2
   - nAnt
   - PowerShell
+  - RedGate SQL schema and data compare
   - Windows
 
 ----
@@ -79,38 +80,119 @@ Powered By
 Why Windows?
 ============
 
-- Windows shop
+  - Windows shop
 
-  - IT knowledge
+    - IT knowledge
 
-- Legacy Business Database on MS SQL
+  - Legacy Business Database on MS SQL
 
-  - Triggers, user funcs, stored procs, SSIS, SSRS
-  - Replication not an option 
-    (tech limitations and historical business reasons)
+    - Triggers, user funcs, stored procs, SSIS, SSRS
+    - Replication not an option 
+      (tech limitations and historical business reasons)
 
-- Didn't have a choice
-
-Why Not IIS, ASP.NET, PHP, etc?
--------------------------------
-
-- Contact me after the talk
+  - Didn't have a choice
 
 ----
 
-Windows MPM Options
--------------------
+Why Django?
+===========
 
-- mpm_winnt
+  - Previous iteration of site was VB6
+  - ASP.NET workflow is a bit slower and heavier
+  - Faster prototyping
+  - Possibly more reasons, but decision made before I was hired
+
+----
+
+Why SQL Server?
+===============
+
+  - Avoid extra database replication services
   
-  - One process, many threads
+    - SQL Server (master) <--> OpenVMS --> SQL Server (www)
+      
+      - SSIS jobs pump data from www to OpenVMS and master
+
+  - Secondary factors against Django supported database _____
+
+    - Oracle? Price
+    - Postgresql? Not recommended on Windows
+    - MySQL? Feature limited
+    - Sqlite? Not meant for production
 
 ----
 
-What's Wrong With Threads?
---------------------------
+SQL Server database backends
+============================
 
-- Uses more resources
+django-pyodbc
+-------------
+
+  - Cross platform
+  - Any ODBC connection
+  - Missing datatypes and SQL Server specific features
+  - Django 1.4 fork by Alex Vidal - `https://github.com/avidal/django-pyodbc`_ 
+
+django-mssql
+------------
+
+  - Windows only
+  - SQL server specific
+  - Supports more datatypes and server features
+  - Supports Django 1.2 - 1.4 (1.5 support being tested)
+  - `http://bitbucket.org/Manfre/django-mssql/`_
+
+----
+
+HTTP server choices
+===================
+
+Three main questions
+--------------------
+
+  1. Can it run as a service?
+  2. Does it have any known issues?
+  3. Is the windows build actively maintained and supported?
+
+On Windows...
+-------------
+
+============  ===============  ============  ==================
+Server        Runs as Service  Known Issues  Actively Supported
+============  ===============  ============  ==================
+Apache        Yes              No            Yes
+IIS           Yes              No [1]        Yes
+nginx         No               No            Yes
+Lighttpd      Yes              Yes [2]       No
+============  ===============  ============  ==================
+
+
+.. [1] Difficulty with automated build enviroment caused by changes between the various versions of
+       IIS. Each OS and sometimes service pack provides a different IIS version.
+
+.. [2] Several documented issues in release notes at time of evaluation in 2009-2010. Windows
+       build no longer actively maintained.
+
+----
+
+Apache on Windows
+=================
+
+  - Actively maintained
+  - Lots of features
+  
+    - Can proxy if HAProxy or other option not available
+  
+  - More resource heavy than other options
+  - MPM: mpm_winnt
+
+    - One process, many threads
+
+----
+
+Launch day surprise
+===================
+
 - Most pages have lots of IO
 
   - Network (Request/Response)
@@ -134,7 +216,7 @@ What's Wrong With Threads?
 ----
 
 How We Worked Around It?
-------------------------
+========================
 
 - Optimize slow pages
 - Web farm on a box
@@ -149,7 +231,7 @@ How We Worked Around It?
 ----
 
 It's Not All Bad
-----------------
+================
 
   "What is life without challenges?" - Richard Castle
 
@@ -161,13 +243,13 @@ It's Not All Bad
 ----
 
 Is There A Better Way?
-----------------------
+======================
 
 If you have ideas, questions, or comments, please contact me.
 
 Michael Manfre
 
-manfre on `Twitter`_ | `Bitbucket`_ | `Github`_ | Freenode
+"manfre" on `Twitter`_ | `Bitbucket`_ | `Github`_ | Freenode
 
 Slides: `http://bit.ly/dj12manfretalk`_
 
@@ -177,3 +259,5 @@ Slides: `http://bit.ly/dj12manfretalk`_
 .. _`http://bit.ly/dj12manfretalk`: http://bit.ly/dj12manfretalk
 
 .. _`http://www.src.org/about/`: http://www.src.org/about/
+.. _`http://bitbucket.org/Manfre/django-mssql/`: http://bitbucket.org/Manfre/django-mssql/
+.. _`https://github.com/avidal/django-pyodbc`: https://github.com/avidal/django-pyodbc

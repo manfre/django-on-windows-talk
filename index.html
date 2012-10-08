@@ -78,7 +78,7 @@ Django database backend for Microsoft SQL Server</blockquote></section>
             </aside>
             
             <aside class="page_number">
-              1/11
+              1/15
             </aside>
           </footer>
         </div>
@@ -115,7 +115,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              2/11
+              2/15
             </aside>
           </footer>
         </div>
@@ -157,7 +157,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              3/11
+              3/15
             </aside>
           </footer>
         </div>
@@ -193,7 +193,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              4/11
+              4/15
             </aside>
           </footer>
         </div>
@@ -211,12 +211,14 @@ that will invent the industries of tomorrow.&quot;</p>
 <ul class="simple">
 <li>Apache</li>
 <li>CruiseControl.net</li>
-<li>Django</li>
+<li>Django 1.4.1</li>
 <li>HAProxy (Ubuntu)</li>
 <li>Memcached</li>
-<li>Microsoft SQL Server</li>
+<li>Mercurial (Hg)</li>
+<li>Microsoft SQL Server 2008r2</li>
 <li>nAnt</li>
 <li>PowerShell</li>
+<li>RedGate SQL schema and data compare</li>
 <li>Windows</li>
 </ul>
 </blockquote></section>
@@ -235,7 +237,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              5/11
+              5/15
             </aside>
           </footer>
         </div>
@@ -249,7 +251,8 @@ that will invent the industries of tomorrow.&quot;</p>
             <header><h1>Why Windows?</h1></header>
             
             
-            <section><ul class="simple">
+            <section><blockquote>
+<ul class="simple">
 <li>Windows shop<ul>
 <li>IT knowledge</li>
 </ul>
@@ -262,11 +265,7 @@ that will invent the industries of tomorrow.&quot;</p>
 </li>
 <li>Didn't have a choice</li>
 </ul>
-
-<h2>Why Not IIS, ASP.NET, PHP, etc?</h2>
-<ul class="simple">
-<li>Contact me after the talk</li>
-</ul></section>
+</blockquote></section>
             
           </div>
           <div class="presenter_notes">
@@ -282,7 +281,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              6/11
+              6/15
             </aside>
           </footer>
         </div>
@@ -293,15 +292,248 @@ that will invent the industries of tomorrow.&quot;</p>
         <div class="slide">
           <div class="inner">
             
-            <header><h2>Windows MPM Options</h2></header>
+            <header><h1>Why Django?</h1></header>
             
             
-            <section><ul class="simple">
-<li>mpm_winnt<ul>
+            <section><blockquote>
+<ul class="simple">
+<li>Previous iteration of site was VB6</li>
+<li>ASP.NET workflow is a bit slower and heavier</li>
+<li>Faster prototyping</li>
+<li>Possibly more reasons, but decision made before I was hired</li>
+</ul>
+</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/15
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Why SQL Server?</h1></header>
+            
+            
+            <section><blockquote>
+<ul class="simple">
+<li>Avoid extra database replication services<ul>
+<li>SQL Server (master) &lt;--&gt; OpenVMS --&gt; SQL Server (www)<ul>
+<li>SSIS jobs pump data from www to OpenVMS and master</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Secondary factors against Django supported database _____<ul>
+<li>Oracle? Price</li>
+<li>Postgresql? Not recommended on Windows</li>
+<li>MySQL? Feature limited</li>
+<li>Sqlite? Not meant for production</li>
+</ul>
+</li>
+</ul>
+</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/15
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>SQL Server database backends</h1></header>
+            
+            
+            <section><h2>django-pyodbc</h2>
+<blockquote>
+<ul class="simple">
+<li>Cross platform</li>
+<li>Any ODBC connection</li>
+<li>Missing datatypes and SQL Server specific features</li>
+<li>Django 1.4 fork by Alex Vidal - <a class="reference external" href="https://github.com/avidal/django-pyodbc">https://github.com/avidal/django-pyodbc</a></li>
+</ul>
+</blockquote>
+
+
+<h2>django-mssql</h2>
+<blockquote>
+<ul class="simple">
+<li>Windows only</li>
+<li>SQL server specific</li>
+<li>Supports more datatypes and server features</li>
+<li>Supports Django 1.2 - 1.4 (1.5 support being tested)</li>
+<li><a class="reference external" href="http://bitbucket.org/Manfre/django-mssql/">http://bitbucket.org/Manfre/django-mssql/</a></li>
+</ul>
+</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/15
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>HTTP server choices</h1></header>
+            
+            
+            <section><h2>Three main questions</h2>
+<blockquote>
+<ol class="arabic simple">
+<li>Can it run as a service?</li>
+<li>Does it have any known issues?</li>
+<li>Is the windows build actively maintained and supported?</li>
+</ol>
+</blockquote>
+
+
+<h2>On Windows...</h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="26%" />
+<col width="21%" />
+<col width="32%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Server</th>
+<th class="head">Runs as Service</th>
+<th class="head">Known Issues</th>
+<th class="head">Actively Supported</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Apache</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr><td>IIS</td>
+<td>Yes</td>
+<td>No [1]</td>
+<td>Yes</td>
+</tr>
+<tr><td>nginx</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr><td>Lighttpd</td>
+<td>Yes</td>
+<td>Yes [2]</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td>Difficulty with automated build enviroment caused by changes between the various versions of
+IIS. Each OS and sometimes service pack provides a different IIS version.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td>Several documented issues in release notes at time of evaluation in 2009-2010. Windows
+build no longer actively maintained.</td></tr>
+</tbody>
+</table></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              10/15
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Apache on Windows</h1></header>
+            
+            
+            <section><blockquote>
+<ul class="simple">
+<li>Actively maintained</li>
+<li>Lots of features<ul>
+<li>Can proxy if HAProxy or other option not available</li>
+</ul>
+</li>
+<li>More resource heavy than other options</li>
+<li>MPM: mpm_winnt<ul>
 <li>One process, many threads</li>
 </ul>
 </li>
-</ul></section>
+</ul>
+</blockquote></section>
             
           </div>
           <div class="presenter_notes">
@@ -317,7 +549,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              7/11
+              11/15
             </aside>
           </footer>
         </div>
@@ -328,11 +560,10 @@ that will invent the industries of tomorrow.&quot;</p>
         <div class="slide">
           <div class="inner">
             
-            <header><h2>What's Wrong With Threads?</h2></header>
+            <header><h1>Launch day surprise</h1></header>
             
             
             <section><ul class="simple">
-<li>Uses more resources</li>
 <li>Most pages have lots of IO<ul>
 <li>Network (Request/Response)</li>
 <li>Cache</li>
@@ -368,7 +599,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              8/11
+              12/15
             </aside>
           </footer>
         </div>
@@ -379,7 +610,7 @@ that will invent the industries of tomorrow.&quot;</p>
         <div class="slide">
           <div class="inner">
             
-            <header><h2>How We Worked Around It?</h2></header>
+            <header><h1>How We Worked Around It?</h1></header>
             
             
             <section><ul class="simple">
@@ -408,7 +639,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              9/11
+              13/15
             </aside>
           </footer>
         </div>
@@ -419,7 +650,7 @@ that will invent the industries of tomorrow.&quot;</p>
         <div class="slide">
           <div class="inner">
             
-            <header><h2>It's Not All Bad</h2></header>
+            <header><h1>It's Not All Bad</h1></header>
             
             
             <section><blockquote>
@@ -444,7 +675,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              10/11
+              14/15
             </aside>
           </footer>
         </div>
@@ -455,12 +686,12 @@ that will invent the industries of tomorrow.&quot;</p>
         <div class="slide">
           <div class="inner">
             
-            <header><h2>Is There A Better Way?</h2></header>
+            <header><h1>Is There A Better Way?</h1></header>
             
             
             <section><p>If you have ideas, questions, or comments, please contact me.</p>
 <p>Michael Manfre</p>
-<p>manfre on <a class="reference external" href="http://twitter.com/manfre">Twitter</a> | <a class="reference external" href="https://bitbucket.org/Manfre">Bitbucket</a> | <a class="reference external" href="https://github.com/manfre">Github</a> | Freenode</p>
+<p>&quot;manfre&quot; on <a class="reference external" href="http://twitter.com/manfre">Twitter</a> | <a class="reference external" href="https://bitbucket.org/Manfre">Bitbucket</a> | <a class="reference external" href="https://github.com/manfre">Github</a> | Freenode</p>
 <p>Slides: <a class="reference external" href="http://bit.ly/dj12manfretalk">http://bit.ly/dj12manfretalk</a></p></section>
             
           </div>
@@ -477,7 +708,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              11/11
+              15/15
             </aside>
           </footer>
         </div>
@@ -526,32 +757,59 @@ that will invent the industries of tomorrow.&quot;</p>
         <td><a href="#slide6">6</a></td>
       </tr>
       
-        
-        <tr id="toc-row-7" class="sub">
-          <th><a href="#slide7">Windows MPM Options</a></th>
-          <td><a href="#slide7">7</a></td>
-        </tr>
-        
-        <tr id="toc-row-8" class="sub">
-          <th><a href="#slide8">What's Wrong With Threads?</a></th>
-          <td><a href="#slide8">8</a></td>
-        </tr>
-        
-        <tr id="toc-row-9" class="sub">
-          <th><a href="#slide9">How We Worked Around It?</a></th>
-          <td><a href="#slide9">9</a></td>
-        </tr>
-        
-        <tr id="toc-row-10" class="sub">
-          <th><a href="#slide10">It's Not All Bad</a></th>
-          <td><a href="#slide10">10</a></td>
-        </tr>
-        
-        <tr id="toc-row-11" class="sub">
-          <th><a href="#slide11">Is There A Better Way?</a></th>
-          <td><a href="#slide11">11</a></td>
-        </tr>
-        
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide7">Why Django?</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-8">
+        <th><a href="#slide8">Why SQL Server?</a></th>
+        <td><a href="#slide8">8</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-9">
+        <th><a href="#slide9">SQL Server database backends</a></th>
+        <td><a href="#slide9">9</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-10">
+        <th><a href="#slide10">HTTP server choices</a></th>
+        <td><a href="#slide10">10</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-11">
+        <th><a href="#slide11">Apache on Windows</a></th>
+        <td><a href="#slide11">11</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-12">
+        <th><a href="#slide12">Launch day surprise</a></th>
+        <td><a href="#slide12">12</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-13">
+        <th><a href="#slide13">How We Worked Around It?</a></th>
+        <td><a href="#slide13">13</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-14">
+        <th><a href="#slide14">It's Not All Bad</a></th>
+        <td><a href="#slide14">14</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-15">
+        <th><a href="#slide15">Is There A Better Way?</a></th>
+        <td><a href="#slide15">15</a></td>
+      </tr>
       
       
     </table>
