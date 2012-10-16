@@ -1,18 +1,30 @@
 .. |reg| unicode:: U+00AE .. REGISTERED TRADEMARK
 .. |tm| unicode:: U+2122 .. TRADEMARK
 
-Django on Windows with Apache
-=============================
+Django on Windows
+=================
 
 Michael Manfre
 
-Semiconductor Research Corporation |reg|
+----
+
+Michael Manfre
+==============
+
+Developer at Semiconductor Research Corporation |reg|
 
 	Pioneers in research collaboration |tm|
 
-django-mssql 
+Maintainer of django-mssql 
 
 	Django database backend for Microsoft SQL Server
+
+Developer at Brewed By Us, LLC
+
+    `http://brewedbyus.com`_ - Social home brewing web site to create and share recipes, 
+    edit and evolve them, and keep a journal so you can keep a record of your brewing journey.
+
+.. _`http://brewedbyus.com`: http://brewedbyus.com
 
 ----
 
@@ -27,10 +39,14 @@ Semiconductor Research Corporation |reg|
     
     -- `http://www.src.org/about/`_
 
+.. _`http://www.src.org/about/`: http://www.src.org/about/
+
 ----
 
 Web site purpose
 ================
+
+.fx: web-site-purpose
 
   - Knowledge transfer
   
@@ -41,6 +57,7 @@ Web site purpose
   
   - Meetings & events
   - Student CV and recruitment
+
 
 ----
 
@@ -139,8 +156,26 @@ django-mssql
   - Windows only
   - SQL server specific
   - Supports more datatypes and server features
-  - Supports Django 1.2 - 1.4 (1.5 support being tested)
+  - Supports Django 1.2 - 1.5
   - `http://bitbucket.org/Manfre/django-mssql/`_
+
+.. _`http://bitbucket.org/Manfre/django-mssql/`: http://bitbucket.org/Manfre/django-mssql/
+.. _`https://github.com/avidal/django-pyodbc`: https://github.com/avidal/django-pyodbc
+
+----
+
+Future of Django-mssql
+======================
+
+  - Support any Django version supported by Django project
+  - Support Python 3
+  - 100% Pass Django test suite by Django 1.6
+  - Improve performance
+  - MSSQL sugar. 
+  
+    - ``raw_callproc``
+    
+  - More complete documentation
 
 ----
 
@@ -151,7 +186,7 @@ Three main questions
 --------------------
 
   1. Can it run as a service?
-  2. Does it have any known issues?
+  2. Does it have any known issues that impact the project? (they all have issues)
   3. Is the windows build actively maintained and supported?
 
 On Windows...
@@ -230,6 +265,7 @@ How We Worked Around It?
 
 ----
 
+
 It's Not All Bad
 ================
 
@@ -242,22 +278,25 @@ It's Not All Bad
 
 ----
 
-Is There A Better Way?
+Questions And Feedback
 ======================
 
-If you have ideas, questions, or comments, please contact me.
+.fx: questions
+
+.. figure:: images/manfre-crest.png
+   :alt: Manfre's avatar
+   :align: right
 
 Michael Manfre
 
-"manfre" on `Twitter`_ | `Bitbucket`_ | `Github`_ | Freenode
+- Twitter: `@manfre`_
+- BitBucket: `https://bitbucket.com/Manfre/`_
+- Github: `https://github.com/manfre/`_
+- Freenode: manfre
 
-Slides: `http://bit.ly/dj12manfretalk`_
+- Slides: `http://manfre.github.com/django-on-windows-talk/`_
 
-.. _`Twitter`: http://twitter.com/manfre
-.. _`Bitbucket`: https://bitbucket.org/Manfre
-.. _`Github`: https://github.com/manfre 
-.. _`http://bit.ly/dj12manfretalk`: http://bit.ly/dj12manfretalk
-
-.. _`http://www.src.org/about/`: http://www.src.org/about/
-.. _`http://bitbucket.org/Manfre/django-mssql/`: http://bitbucket.org/Manfre/django-mssql/
-.. _`https://github.com/avidal/django-pyodbc`: https://github.com/avidal/django-pyodbc
+.. _`@manfre`: http://twitter.com/manfre
+.. _`https://bitbucket.com/Manfre/`: https://bitbucket.org/Manfre/
+.. _`https://github.com/manfre/`: https://github.com/manfre/
+.. _`http://manfre.github.com/django-on-windows-talk/`: http://manfre.github.com/django-on-windows-talk/
