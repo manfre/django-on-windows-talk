@@ -6,6 +6,11 @@ Django on Windows
 
 Michael Manfre
 
+
+.. figure:: images/clippy-help.png
+   :alt: Clippy
+   :align: right
+
 ----
 
 Michael Manfre
@@ -23,6 +28,10 @@ Developer at Brewed By Us, LLC
 
     `http://brewedbyus.com`_ - Social home brewing web site to create and share recipes, 
     edit and evolve them, and keep a journal so you can keep a record of your brewing journey.
+
+Manfre LLC
+
+    IT consultant and custom software development with various languages and frameworks.
 
 .. _`http://brewedbyus.com`: http://brewedbyus.com
 
@@ -109,6 +118,7 @@ Why Windows?
 
   - Didn't have a choice
 
+
 ----
 
 Why Django?
@@ -124,18 +134,19 @@ Why Django?
 Why SQL Server?
 ===============
 
-  - Avoid extra database replication services
+- Legacy business database
+- Avoid extra database replication services
+
+- SQL Server (master) <--> OpenVMS --> SQL Server (www)
   
-    - SQL Server (master) <--> OpenVMS --> SQL Server (www)
-      
-      - SSIS jobs pump data from www to OpenVMS and master
+  - SSIS jobs pump data from www to OpenVMS and master
 
-  - Secondary factors against Django supported database _____
+- Secondary factors against Django supported database _____
 
-    - Oracle? Price
-    - Postgresql? Not recommended on Windows
-    - MySQL? Feature limited
-    - Sqlite? Not meant for production
+  - Oracle? Price
+  - Postgresql? Not recommended on Windows
+  - MySQL? Feature limited
+  - Sqlite? Not meant for production
 
 ----
 
@@ -174,7 +185,7 @@ Future of Django-mssql
     - Currently 13 failures, 13 errors
   
   - Improve performance
-  - MSSQL sugar. 
+  - MSSQL sugar
   
     - ``raw_callproc``
     
@@ -231,27 +242,60 @@ Apache on Windows
 - MPM: mpm_winnt
 
   - One process, many threads
+  
+- mod_wsgi
+
+  - Module adds WSGI support for Apache. Daemon mode not supported on Windows.
+  - `http://code.google.com/p/modwsgi/`_
+
+.. code::
+
+    LoadModule wsgi_module "D:/web/modules/mod_wsgi-win32-ap22py26-3.3.so"
+    
+    <IfModule wsgi_module>
+        WSGIScriptAlias / "D:/web/@SERVER_NAME@.wsgi"
+        WSGIPassAuthorization On
+    </IfModule>
+
+.. _`http://code.google.com/p/modwsgi/`: http://code.google.com/p/modwsgi/
 
 ----
 
 Useful Apache Modules
 =====================
 
-mod_wsgi
-
-    WSGI support for Apache. Daemon mode not supported on Windows.
-
 mod_rpaf
 
     Fixes client IP for Apache sitting behind one or more trusted proxies.
+
+.. code::
+
+    LoadModule log_rotate_module "D:/web/modules/mod_log_rotate.so"
+    
+    <IfModule rpaf_module>
+        RPAFenable On
+        RPAFsethostname On
+        #             localhost lb1.src.org   lb2.src.org
+        RPAFproxy_ips 127.0.0.1 192.168.1.10  10.10.10.10
+        RPAFheader X-Forwarded-For
+    </IfModule>
+
 
 mod_xsendfile
 
     Serve files gated by Django.
 
-    .. code::
+.. code::
+
+    LoadModule xsendfile_module "D:/web/modules/mod_xsendfile.so"
     
-        UNC path example
+    <IfModule xsendfile_module>
+        XSendFile on
+        XSendFilePath "E:/"
+        XSendFilePath "//file_server/unc/path"
+        XSendFileIgnoreLastModified on
+        XSendFileIgnoreEtag on
+    </IfModule>
 
 ----
 
@@ -294,6 +338,10 @@ Web farm on a box
   - When worker crashes, site is still online
   - Configuration is ready to scale
 
+.. figure:: images/webfarm.png
+   :alt: Web Farm
+  
+
 ----
 
 Load balancing Apache instance
@@ -314,7 +362,7 @@ Basic balancer config
 
 - Serves static files
 - Responsible for web logs
-- mod_proxy* has been known to leak memory
+- mod_proxy modules have been known to leak memory
 - SSL endpoint
 - Rewrite rules
 
@@ -325,7 +373,7 @@ Apache worker instances
 
 - Configure to behave like a WSGI daemon
 
-  - Only load needed modules
+  - Apache balancer should handle everything not needed by Django project
 
 - Disable logging
 
@@ -335,11 +383,21 @@ Apache worker instances
       # Below will never output anything, but it will create an empty file
       CustomLog "D:/logs/carme/apache/access-1.log" empty env=NOTHING_IS_LOGGED
 
+- If using HAProxy
+
+  - Include rewrite rules
+  - Add a stand alone instance for static content
 
 ----
 
 Build and Deploy
 ================
+
+.fx: build-deploy
+
+  .. figure:: images/cctray.png
+     :alt: CCTray with builds
+
 
 - CruiseControl.net - `http://www.cruisecontrolnet.org/`_
 - nAnt - `http://nant.sourceforge.net`_
@@ -348,6 +406,118 @@ Build and Deploy
 
 .. _`http://www.cruisecontrolnet.org/`: http://www.cruisecontrolnet.org/
 .. _`http://nant.sourceforge.net`: http://nant.sourceforge.net
+
+----
+
+Virtualenv
+==========
+
+- Always create virtualenv with ``--system-site-packages`` due to `pywin32`
+
+  - Many DLL python packages will not install properly in to a virtualenv.
+
+.. code::
+
+     virtualenv env --system-site-packages
+
+----
+
+Virtualenv Wrapper
+==================
+
+virtualenvwrapper-win
+
+  Windows port of virtualenvwrapper.  
+  `http://www.doughellmann.com/projects/virtualenvwrapper/`_
+
+Install
+
+.. code::
+    
+      pip install virtualenvwrapper-win
+
+Create virtualenv
+
+.. code::
+      
+      mkvirtualenv myproject --system-site-packages
+
+Switch virtualenv
+
+.. code::
+
+      C:\> workon myproject
+      (myproject) C:\>
+
+Leave virtualenv
+
+.. code::
+
+      (myproject) C:\> deactivate
+      C:\> 
+
+
+.. _`http://www.doughellmann.com/projects/virtualenvwrapper/`: http://www.doughellmann.com/projects/virtualenvwrapper/
+
+----
+
+Unit Tests
+==========
+
+Test actual schema or fake logic?
+
+  - Computed Fields
+  - Stored Procedures
+  - Triggers
+  - Views
+
+Custom ``create_test_db`` management command
+
+.. code::
+
+    > python manage.py create_test_db
+    Bouncing database test_db_name
+    Dropping database test_db_name
+    Creating database test_db_name
+    Finding Files: <path pattern>
+    Reading File: <file-1>
+    Reading File: <file-n>
+    ... repeats previous Finding and Reading many times ...
+    Loading Seed Data
+
+----
+
+Django-mssql ``TEST_CREATE`` Setting
+====================================
+
+test_settings.py
+
+.. code:: python
+
+    DATABASES = {
+        'default': {
+            'NAME': 'test_db_name',
+            'HOST': r'servername\ss2008',
+            'TEST_NAME': 'test_db_name',
+            'TEST_CREATE': False,
+        }
+    }
+
+Run tests normally
+
+.. code::
+    
+    > python manage.py test
+    Creating test database for alias 'default'...
+    Skipping Test DB creation
+    ...
+    
+    OK
+    Destroying test database for alias 'default'...
+    Skipping Test DB destruction    
+
+
+
 
 ----
 

@@ -60,7 +60,9 @@
             <header><h1>Django on Windows</h1></header>
             
             
-            <section><p>Michael Manfre</p></section>
+            <section><p>Michael Manfre</p>
+
+<img alt="Clippy" src="images/clippy-help.png" /></section>
             
           </div>
           <div class="presenter_notes">
@@ -76,7 +78,7 @@
             </aside>
             
             <aside class="page_number">
-              1/20
+              1/24
             </aside>
           </footer>
         </div>
@@ -99,7 +101,10 @@ Django database backend for Microsoft SQL Server</blockquote>
 <p>Developer at Brewed By Us, LLC</p>
 <blockquote>
 <a class="reference external" href="http://brewedbyus.com">http://brewedbyus.com</a> - Social home brewing web site to create and share recipes,
-edit and evolve them, and keep a journal so you can keep a record of your brewing journey.</blockquote></section>
+edit and evolve them, and keep a journal so you can keep a record of your brewing journey.</blockquote>
+<p>Manfre LLC</p>
+<blockquote>
+IT consultant and custom software development with various languages and frameworks.</blockquote></section>
             
           </div>
           <div class="presenter_notes">
@@ -115,7 +120,7 @@ edit and evolve them, and keep a journal so you can keep a record of your brewin
             </aside>
             
             <aside class="page_number">
-              2/20
+              2/24
             </aside>
           </footer>
         </div>
@@ -152,7 +157,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              3/20
+              3/24
             </aside>
           </footer>
         </div>
@@ -194,7 +199,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              4/20
+              4/24
             </aside>
           </footer>
         </div>
@@ -230,7 +235,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              5/20
+              5/24
             </aside>
           </footer>
         </div>
@@ -274,7 +279,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              6/20
+              6/24
             </aside>
           </footer>
         </div>
@@ -318,7 +323,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              7/20
+              7/24
             </aside>
           </footer>
         </div>
@@ -355,7 +360,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              8/20
+              8/24
             </aside>
           </footer>
         </div>
@@ -369,13 +374,11 @@ that will invent the industries of tomorrow.&quot;</p>
             <header><h1>Why SQL Server?</h1></header>
             
             
-            <section><blockquote>
-<ul class="simple">
-<li>Avoid extra database replication services<ul>
+            <section><ul class="simple">
+<li>Legacy business database</li>
+<li>Avoid extra database replication services</li>
 <li>SQL Server (master) &lt;--&gt; OpenVMS --&gt; SQL Server (www)<ul>
 <li>SSIS jobs pump data from www to OpenVMS and master</li>
-</ul>
-</li>
 </ul>
 </li>
 <li>Secondary factors against Django supported database _____<ul>
@@ -385,8 +388,7 @@ that will invent the industries of tomorrow.&quot;</p>
 <li>Sqlite? Not meant for production</li>
 </ul>
 </li>
-</ul>
-</blockquote></section>
+</ul></section>
             
           </div>
           <div class="presenter_notes">
@@ -402,7 +404,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              9/20
+              9/24
             </aside>
           </footer>
         </div>
@@ -452,7 +454,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              10/20
+              10/24
             </aside>
           </footer>
         </div>
@@ -475,7 +477,7 @@ that will invent the industries of tomorrow.&quot;</p>
 </ul>
 </li>
 <li>Improve performance</li>
-<li>MSSQL sugar.<ul>
+<li>MSSQL sugar<ul>
 <li><tt class="docutils literal">raw_callproc</tt></li>
 </ul>
 </li>
@@ -500,7 +502,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              11/20
+              11/24
             </aside>
           </footer>
         </div>
@@ -597,7 +599,7 @@ build no longer actively maintained.</td></tr>
             </aside>
             
             <aside class="page_number">
-              12/20
+              12/24
             </aside>
           </footer>
         </div>
@@ -622,7 +624,20 @@ build no longer actively maintained.</td></tr>
 <li>One process, many threads</li>
 </ul>
 </li>
-</ul></section>
+<li>mod_wsgi<ul>
+<li>Module adds WSGI support for Apache. Daemon mode not supported on Windows.</li>
+<li><a class="reference external" href="http://code.google.com/p/modwsgi/">http://code.google.com/p/modwsgi/</a></li>
+</ul>
+</li>
+</ul>
+<pre class="code literal-block">
+LoadModule wsgi_module &quot;D:/web/modules/mod_wsgi-win32-ap22py26-3.3.so&quot;
+
+&lt;IfModule wsgi_module&gt;
+    WSGIScriptAlias / &quot;D:/web/&#64;SERVER_NAME&#64;.wsgi&quot;
+    WSGIPassAuthorization On
+&lt;/IfModule&gt;
+</pre></section>
             
           </div>
           <div class="presenter_notes">
@@ -638,7 +653,7 @@ build no longer actively maintained.</td></tr>
             </aside>
             
             <aside class="page_number">
-              13/20
+              13/24
             </aside>
           </footer>
         </div>
@@ -652,19 +667,34 @@ build no longer actively maintained.</td></tr>
             <header><h1>Useful Apache Modules</h1></header>
             
             
-            <section><p>mod_wsgi</p>
-<blockquote>
-WSGI support for Apache. Daemon mode not supported on Windows.</blockquote>
-<p>mod_rpaf</p>
+            <section><p>mod_rpaf</p>
 <blockquote>
 Fixes client IP for Apache sitting behind one or more trusted proxies.</blockquote>
+<pre class="code literal-block">
+LoadModule log_rotate_module &quot;D:/web/modules/mod_log_rotate.so&quot;
+
+&lt;IfModule rpaf_module&gt;
+    RPAFenable On
+    RPAFsethostname On
+    #             localhost lb1.src.org   lb2.src.org
+    RPAFproxy_ips 127.0.0.1 192.168.1.10  10.10.10.10
+    RPAFheader X-Forwarded-For
+&lt;/IfModule&gt;
+</pre>
 <p>mod_xsendfile</p>
 <blockquote>
-<p>Serve files gated by Django.</p>
+Serve files gated by Django.</blockquote>
 <pre class="code literal-block">
-UNC path example
-</pre>
-</blockquote></section>
+LoadModule xsendfile_module &quot;D:/web/modules/mod_xsendfile.so&quot;
+
+&lt;IfModule xsendfile_module&gt;
+    XSendFile on
+    XSendFilePath &quot;E:/&quot;
+    XSendFilePath &quot;//file_server/unc/path&quot;
+    XSendFileIgnoreLastModified on
+    XSendFileIgnoreEtag on
+&lt;/IfModule&gt;
+</pre></section>
             
           </div>
           <div class="presenter_notes">
@@ -680,7 +710,7 @@ UNC path example
             </aside>
             
             <aside class="page_number">
-              14/20
+              14/24
             </aside>
           </footer>
         </div>
@@ -730,7 +760,7 @@ UNC path example
             </aside>
             
             <aside class="page_number">
-              15/20
+              15/24
             </aside>
           </footer>
         </div>
@@ -755,7 +785,9 @@ UNC path example
 <li>When worker crashes, site is still online</li>
 <li>Configuration is ready to scale</li>
 </ul>
-</blockquote></section>
+</blockquote>
+
+<img alt="Web Farm" src="images/webfarm.png" /></section>
             
           </div>
           <div class="presenter_notes">
@@ -771,7 +803,7 @@ UNC path example
             </aside>
             
             <aside class="page_number">
-              16/20
+              16/24
             </aside>
           </footer>
         </div>
@@ -798,7 +830,7 @@ ProxyPass / balancer://cluster/ ProxyPassReverse / balancer://cluster/
 <ul class="simple">
 <li>Serves static files</li>
 <li>Responsible for web logs</li>
-<li>mod_proxy* has been known to leak memory</li>
+<li>mod_proxy modules have been known to leak memory</li>
 <li>SSL endpoint</li>
 <li>Rewrite rules</li>
 </ul></section>
@@ -817,7 +849,7 @@ ProxyPass / balancer://cluster/ ProxyPassReverse / balancer://cluster/
             </aside>
             
             <aside class="page_number">
-              17/20
+              17/24
             </aside>
           </footer>
         </div>
@@ -834,7 +866,7 @@ ProxyPass / balancer://cluster/ ProxyPassReverse / balancer://cluster/
             <section><ul>
 <li><p class="first">Configure to behave like a WSGI daemon</p>
 <ul class="simple">
-<li>Only load needed modules</li>
+<li>Apache balancer should handle everything not needed by Django project</li>
 </ul>
 </li>
 <li><p class="first">Disable logging</p>
@@ -843,6 +875,12 @@ LogFormat &quot; &quot; empty
 # Below will never output anything, but it will create an empty file
 CustomLog &quot;D:/logs/carme/apache/access-1.log&quot; empty env=NOTHING_IS_LOGGED
 </pre>
+</li>
+<li><p class="first">If using HAProxy</p>
+<ul class="simple">
+<li>Include rewrite rules</li>
+<li>Add a stand alone instance for static content</li>
+</ul>
 </li>
 </ul></section>
             
@@ -860,7 +898,7 @@ CustomLog &quot;D:/logs/carme/apache/access-1.log&quot; empty env=NOTHING_IS_LOG
             </aside>
             
             <aside class="page_number">
-              18/20
+              18/24
             </aside>
           </footer>
         </div>
@@ -868,13 +906,18 @@ CustomLog &quot;D:/logs/carme/apache/access-1.log&quot; empty env=NOTHING_IS_LOG
       
       <!-- slide source: slides.rst -->
       <div class="slide-wrapper">
-        <div class="slide slide19">
+        <div class="slide slide19 build-deploy">
           <div class="inner">
             
             <header><h1>Build and Deploy</h1></header>
             
             
-            <section><ul class="simple">
+            <section><blockquote>
+
+<img alt="CCTray with builds" src="images/cctray.png" />
+
+</blockquote>
+<ul class="simple">
 <li>CruiseControl.net - <a class="reference external" href="http://www.cruisecontrolnet.org/">http://www.cruisecontrolnet.org/</a></li>
 <li>nAnt - <a class="reference external" href="http://nant.sourceforge.net">http://nant.sourceforge.net</a></li>
 <li><tt class="docutils literal">psexec</tt> for remote execution</li>
@@ -895,7 +938,7 @@ CustomLog &quot;D:/logs/carme/apache/access-1.log&quot; empty env=NOTHING_IS_LOG
             </aside>
             
             <aside class="page_number">
-              19/20
+              19/24
             </aside>
           </footer>
         </div>
@@ -903,7 +946,197 @@ CustomLog &quot;D:/logs/carme/apache/access-1.log&quot; empty env=NOTHING_IS_LOG
       
       <!-- slide source: slides.rst -->
       <div class="slide-wrapper">
-        <div class="slide slide20 questions">
+        <div class="slide slide20">
+          <div class="inner">
+            
+            <header><h1>Virtualenv</h1></header>
+            
+            
+            <section><ul class="simple">
+<li>Always create virtualenv with <tt class="docutils literal"><span class="pre">--system-site-packages</span></tt> due to <cite>pywin32</cite><ul>
+<li>Many DLL python packages will not install properly in to a virtualenv.</li>
+</ul>
+</li>
+</ul>
+<pre class="code literal-block">
+virtualenv env --system-site-packages
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              20/24
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide21">
+          <div class="inner">
+            
+            <header><h1>Virtualenv Wrapper</h1></header>
+            
+            
+            <section><p>virtualenvwrapper-win</p>
+<blockquote>
+Windows port of virtualenvwrapper.
+<a class="reference external" href="http://www.doughellmann.com/projects/virtualenvwrapper/">http://www.doughellmann.com/projects/virtualenvwrapper/</a></blockquote>
+<p>Install</p>
+<pre class="code literal-block">
+pip install virtualenvwrapper-win
+</pre>
+<p>Create virtualenv</p>
+<pre class="code literal-block">
+mkvirtualenv myproject --system-site-packages
+</pre>
+<p>Switch virtualenv</p>
+<pre class="code literal-block">
+C:\&gt; workon myproject
+(myproject) C:\&gt;
+</pre>
+<p>Leave virtualenv</p>
+<pre class="code literal-block">
+(myproject) C:\&gt; deactivate
+C:\&gt;
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              21/24
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide22">
+          <div class="inner">
+            
+            <header><h1>Unit Tests</h1></header>
+            
+            
+            <section><p>Test actual schema or fake logic?</p>
+<blockquote>
+<ul class="simple">
+<li>Computed Fields</li>
+<li>Stored Procedures</li>
+<li>Triggers</li>
+<li>Views</li>
+</ul>
+</blockquote>
+<p>Custom <tt class="docutils literal">create_test_db</tt> management command</p>
+<pre class="code literal-block">
+&gt; python manage.py create_test_db
+Bouncing database test_db_name
+Dropping database test_db_name
+Creating database test_db_name
+Finding Files: &lt;path pattern&gt;
+Reading File: &lt;file-1&gt;
+Reading File: &lt;file-n&gt;
+... repeats previous Finding and Reading many times ...
+Loading Seed Data
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              22/24
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide23">
+          <div class="inner">
+            
+            <header><h1>Django-mssql <tt class="docutils literal">TEST_CREATE</tt> Setting</h1></header>
+            
+            
+            <section><p>test_settings.py</p>
+<pre class="code python literal-block">
+<span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'default'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">'NAME'</span><span class="p">:</span> <span class="s">'test_db_name'</span><span class="p">,</span>
+        <span class="s">'HOST'</span><span class="p">:</span> <span class="s">r'servername\ss2008'</span><span class="p">,</span>
+        <span class="s">'TEST_NAME'</span><span class="p">:</span> <span class="s">'test_db_name'</span><span class="p">,</span>
+        <span class="s">'TEST_CREATE'</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+<p>Run tests normally</p>
+<pre class="code literal-block">
+&gt; python manage.py test
+Creating test database for alias 'default'...
+Skipping Test DB creation
+...
+
+OK
+Destroying test database for alias 'default'...
+Skipping Test DB destruction
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              23/24
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide24 questions">
           <div class="inner">
             
             <header><h1>Questions And Feedback</h1></header>
@@ -935,7 +1168,7 @@ CustomLog &quot;D:/logs/carme/apache/access-1.log&quot; empty env=NOTHING_IS_LOG
             </aside>
             
             <aside class="page_number">
-              20/20
+              24/24
             </aside>
           </footer>
         </div>
@@ -1064,8 +1297,32 @@ CustomLog &quot;D:/logs/carme/apache/access-1.log&quot; empty env=NOTHING_IS_LOG
       
       
       <tr id="toc-row-20">
-        <th><a href="#slide20">Questions And Feedback</a></th>
+        <th><a href="#slide20">Virtualenv</a></th>
         <td><a href="#slide20">20</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-21">
+        <th><a href="#slide21">Virtualenv Wrapper</a></th>
+        <td><a href="#slide21">21</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-22">
+        <th><a href="#slide22">Unit Tests</a></th>
+        <td><a href="#slide22">22</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-23">
+        <th><a href="#slide23">Django-mssql <tt class="docutils literal">TEST_CREATE</tt> Setting</a></th>
+        <td><a href="#slide23">23</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-24">
+        <th><a href="#slide24">Questions And Feedback</a></th>
+        <td><a href="#slide24">24</a></td>
       </tr>
       
       

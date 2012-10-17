@@ -1,3 +1,17 @@
 .questions img {
     float: right;
 }
+
+.slide1 img {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+}
+
+.slide a {
+    border-bottom: 1px dotted #3f3f3f;
+}
+
+.slide a:hover {
+    border-bottom: 1px solid #3f3f3f;
+}
