@@ -167,15 +167,22 @@ django-mssql
 Future of Django-mssql
 ======================
 
-  - Support any Django version supported by Django project
+  - Will maintain support for any Django version still supported with security patches
   - Support Python 3
   - 100% Pass Django test suite by Django 1.6
+  
+    - Currently 13 failures, 13 errors
+  
   - Improve performance
   - MSSQL sugar. 
   
     - ``raw_callproc``
     
-  - More complete documentation
+  - Continue to improve documentation
+  
+    - `http://django-mssql.readthedocs.org`_
+    
+.. _`http://django-mssql.readthedocs.org`: http://django-mssql.readthedocs.org  
 
 ----
 
@@ -185,7 +192,7 @@ HTTP server choices
 Three main questions
 --------------------
 
-  1. Can it run as a service?
+  1. Can it run as a service without extra tools?
   2. Does it have any known issues that impact the project? (they all have issues)
   3. Is the windows build actively maintained and supported?
 
@@ -197,15 +204,17 @@ Server        Runs as Service  Known Issues  Actively Supported
 ============  ===============  ============  ==================
 Apache        Yes              No            Yes
 IIS           Yes              No [1]        Yes
-nginx         No               No            Yes
-Lighttpd      Yes              Yes [2]       No
+nginx         No               Yes [2]       Yes
+Lighttpd      Yes              Yes [3]       No
 ============  ===============  ============  ==================
 
 
 .. [1] Difficulty with automated build enviroment caused by changes between the various versions of
        IIS. Each OS and sometimes service pack provides a different IIS version.
 
-.. [2] Several documented issues in release notes at time of evaluation in 2009-2010. Windows
+.. [2] Orphans worker processes.
+
+.. [3] Several documented issues in release notes at time of evaluation in 2009-2010. Windows
        build no longer actively maintained.
 
 ----
@@ -213,20 +222,41 @@ Lighttpd      Yes              Yes [2]       No
 Apache on Windows
 =================
 
-  - Actively maintained
-  - Lots of features
+- Actively maintained
+- Lots of features
   
-    - Can proxy if HAProxy or other option not available
+  - Can proxy if HAProxy or other option not available
   
-  - More resource heavy than other options
-  - MPM: mpm_winnt
+- More resource heavy than other options
+- MPM: mpm_winnt
 
-    - One process, many threads
+  - One process, many threads
 
 ----
 
-Launch day surprise
-===================
+Useful Apache Modules
+=====================
+
+mod_wsgi
+
+    WSGI support for Apache. Daemon mode not supported on Windows.
+
+mod_rpaf
+
+    Fixes client IP for Apache sitting behind one or more trusted proxies.
+
+mod_xsendfile
+
+    Serve files gated by Django.
+
+    .. code::
+    
+        UNC path example
+
+----
+
+Understanding the GIL
+=====================
 
 - Most pages have lots of IO
 
@@ -250,31 +280,74 @@ Launch day surprise
 
 ----
 
-How We Worked Around It?
+Faking Process Based MPM
 ========================
 
-- Optimize slow pages
-- Web farm on a box
-- Load balancer
-
-  - mod_proxy_balancer (on the box)
-  - HAProxy
-
-
- "I got a fever, and the only cure is more Apaches"
+Web farm on a box
+-----------------
+  
+  - Load balancing Apache instance
+  
+    - HAProxy is a better option
+  
+  - `N`-worker instances
+  - When worker crashes, site is still online
+  - Configuration is ready to scale
 
 ----
 
+Load balancing Apache instance
+==============================
 
-It's Not All Bad
+Basic balancer config
+---------------------
+
+.. code::
+
+    <Proxy balancer://cluster>
+    	BalancerMember http://192.168.1.100:9001 smax=3 max=10 ttl=120 route=www_1
+    	BalancerMember http://192.168.1.100:9002 smax=3 max=10 ttl=120 route=www_2
+    	BalancerMember http://192.168.1.100:9003 smax=3 max=10 ttl=120 route=www_3
+    </Proxy>
+    
+    ProxyPass / balancer://cluster/ ProxyPassReverse / balancer://cluster/
+
+- Serves static files
+- Responsible for web logs
+- mod_proxy* has been known to leak memory
+- SSL endpoint
+- Rewrite rules
+
+----
+
+Apache worker instances
+=======================
+
+- Configure to behave like a WSGI daemon
+
+  - Only load needed modules
+
+- Disable logging
+
+  .. code::
+    
+      LogFormat " " empty
+      # Below will never output anything, but it will create an empty file
+      CustomLog "D:/logs/carme/apache/access-1.log" empty env=NOTHING_IS_LOGGED
+
+
+----
+
+Build and Deploy
 ================
 
-  "What is life without challenges?" - Richard Castle
+- CruiseControl.net - `http://www.cruisecontrolnet.org/`_
+- nAnt - `http://nant.sourceforge.net`_
+- ``psexec`` for remote execution
+- RedGate SQL Schema Compare
 
-
-- More fault tolerant
-- Ready to scale
-- Great learning experience
+.. _`http://www.cruisecontrolnet.org/`: http://www.cruisecontrolnet.org/
+.. _`http://nant.sourceforge.net`: http://nant.sourceforge.net
 
 ----
 

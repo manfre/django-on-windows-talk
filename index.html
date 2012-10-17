@@ -76,7 +76,7 @@
             </aside>
             
             <aside class="page_number">
-              1/17
+              1/20
             </aside>
           </footer>
         </div>
@@ -115,7 +115,7 @@ edit and evolve them, and keep a journal so you can keep a record of your brewin
             </aside>
             
             <aside class="page_number">
-              2/17
+              2/20
             </aside>
           </footer>
         </div>
@@ -152,7 +152,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              3/17
+              3/20
             </aside>
           </footer>
         </div>
@@ -194,7 +194,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              4/17
+              4/20
             </aside>
           </footer>
         </div>
@@ -230,7 +230,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              5/17
+              5/20
             </aside>
           </footer>
         </div>
@@ -274,7 +274,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              6/17
+              6/20
             </aside>
           </footer>
         </div>
@@ -318,7 +318,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              7/17
+              7/20
             </aside>
           </footer>
         </div>
@@ -355,7 +355,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              8/17
+              8/20
             </aside>
           </footer>
         </div>
@@ -402,7 +402,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              9/17
+              9/20
             </aside>
           </footer>
         </div>
@@ -452,7 +452,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              10/17
+              10/20
             </aside>
           </footer>
         </div>
@@ -468,15 +468,21 @@ that will invent the industries of tomorrow.&quot;</p>
             
             <section><blockquote>
 <ul class="simple">
-<li>Support any Django version supported by Django project</li>
+<li>Will maintain support for any Django version still supported with security patches</li>
 <li>Support Python 3</li>
-<li>100% Pass Django test suite by Django 1.6</li>
+<li>100% Pass Django test suite by Django 1.6<ul>
+<li>Currently 13 failures, 13 errors</li>
+</ul>
+</li>
 <li>Improve performance</li>
 <li>MSSQL sugar.<ul>
 <li><tt class="docutils literal">raw_callproc</tt></li>
 </ul>
 </li>
-<li>More complete documentation</li>
+<li>Continue to improve documentation<ul>
+<li><a class="reference external" href="http://django-mssql.readthedocs.org">http://django-mssql.readthedocs.org</a></li>
+</ul>
+</li>
 </ul>
 </blockquote></section>
             
@@ -494,7 +500,7 @@ that will invent the industries of tomorrow.&quot;</p>
             </aside>
             
             <aside class="page_number">
-              11/17
+              11/20
             </aside>
           </footer>
         </div>
@@ -511,7 +517,7 @@ that will invent the industries of tomorrow.&quot;</p>
             <section><h2>Three main questions</h2>
 <blockquote>
 <ol class="arabic simple">
-<li>Can it run as a service?</li>
+<li>Can it run as a service without extra tools?</li>
 <li>Does it have any known issues that impact the project? (they all have issues)</li>
 <li>Is the windows build actively maintained and supported?</li>
 </ol>
@@ -546,12 +552,12 @@ that will invent the industries of tomorrow.&quot;</p>
 </tr>
 <tr><td>nginx</td>
 <td>No</td>
-<td>No</td>
+<td>Yes [2]</td>
 <td>Yes</td>
 </tr>
 <tr><td>Lighttpd</td>
 <td>Yes</td>
-<td>Yes [2]</td>
+<td>Yes [3]</td>
 <td>No</td>
 </tr>
 </tbody>
@@ -566,7 +572,13 @@ IIS. Each OS and sometimes service pack provides a different IIS version.</td></
 <table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[2]</td><td>Several documented issues in release notes at time of evaluation in 2009-2010. Windows
+<tr><td class="label">[2]</td><td>Orphans worker processes.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[3]</td><td>Several documented issues in release notes at time of evaluation in 2009-2010. Windows
 build no longer actively maintained.</td></tr>
 </tbody>
 </table></section>
@@ -585,7 +597,7 @@ build no longer actively maintained.</td></tr>
             </aside>
             
             <aside class="page_number">
-              12/17
+              12/20
             </aside>
           </footer>
         </div>
@@ -599,8 +611,7 @@ build no longer actively maintained.</td></tr>
             <header><h1>Apache on Windows</h1></header>
             
             
-            <section><blockquote>
-<ul class="simple">
+            <section><ul class="simple">
 <li>Actively maintained</li>
 <li>Lots of features<ul>
 <li>Can proxy if HAProxy or other option not available</li>
@@ -611,7 +622,48 @@ build no longer actively maintained.</td></tr>
 <li>One process, many threads</li>
 </ul>
 </li>
-</ul>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              13/20
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide14">
+          <div class="inner">
+            
+            <header><h1>Useful Apache Modules</h1></header>
+            
+            
+            <section><p>mod_wsgi</p>
+<blockquote>
+WSGI support for Apache. Daemon mode not supported on Windows.</blockquote>
+<p>mod_rpaf</p>
+<blockquote>
+Fixes client IP for Apache sitting behind one or more trusted proxies.</blockquote>
+<p>mod_xsendfile</p>
+<blockquote>
+<p>Serve files gated by Django.</p>
+<pre class="code literal-block">
+UNC path example
+</pre>
 </blockquote></section>
             
           </div>
@@ -628,7 +680,7 @@ build no longer actively maintained.</td></tr>
             </aside>
             
             <aside class="page_number">
-              13/17
+              14/20
             </aside>
           </footer>
         </div>
@@ -636,10 +688,10 @@ build no longer actively maintained.</td></tr>
       
       <!-- slide source: slides.rst -->
       <div class="slide-wrapper">
-        <div class="slide slide14">
+        <div class="slide slide15">
           <div class="inner">
             
-            <header><h1>Launch day surprise</h1></header>
+            <header><h1>Understanding the GIL</h1></header>
             
             
             <section><ul class="simple">
@@ -678,7 +730,7 @@ build no longer actively maintained.</td></tr>
             </aside>
             
             <aside class="page_number">
-              14/17
+              15/20
             </aside>
           </footer>
         </div>
@@ -686,23 +738,24 @@ build no longer actively maintained.</td></tr>
       
       <!-- slide source: slides.rst -->
       <div class="slide-wrapper">
-        <div class="slide slide15">
+        <div class="slide slide16">
           <div class="inner">
             
-            <header><h1>How We Worked Around It?</h1></header>
+            <header><h1>Faking Process Based MPM</h1></header>
             
             
-            <section><ul class="simple">
-<li>Optimize slow pages</li>
-<li>Web farm on a box</li>
-<li>Load balancer<ul>
-<li>mod_proxy_balancer (on the box)</li>
-<li>HAProxy</li>
+            <section><h2>Web farm on a box</h2>
+<blockquote>
+<ul class="simple">
+<li>Load balancing Apache instance<ul>
+<li>HAProxy is a better option</li>
 </ul>
 </li>
+<li><cite>N</cite>-worker instances</li>
+<li>When worker crashes, site is still online</li>
+<li>Configuration is ready to scale</li>
 </ul>
-<blockquote>
-&quot;I got a fever, and the only cure is more Apaches&quot;</blockquote></section>
+</blockquote></section>
             
           </div>
           <div class="presenter_notes">
@@ -718,7 +771,7 @@ build no longer actively maintained.</td></tr>
             </aside>
             
             <aside class="page_number">
-              15/17
+              16/20
             </aside>
           </footer>
         </div>
@@ -726,18 +779,28 @@ build no longer actively maintained.</td></tr>
       
       <!-- slide source: slides.rst -->
       <div class="slide-wrapper">
-        <div class="slide slide16">
+        <div class="slide slide17">
           <div class="inner">
             
-            <header><h1>It's Not All Bad</h1></header>
+            <header><h1>Load balancing Apache instance</h1></header>
             
             
-            <section><blockquote>
-&quot;What is life without challenges?&quot; - Richard Castle</blockquote>
+            <section><h2>Basic balancer config</h2>
+<pre class="code literal-block">
+&lt;Proxy balancer://cluster&gt;
+    BalancerMember http://192.168.1.100:9001 smax=3 max=10 ttl=120 route=www_1
+    BalancerMember http://192.168.1.100:9002 smax=3 max=10 ttl=120 route=www_2
+    BalancerMember http://192.168.1.100:9003 smax=3 max=10 ttl=120 route=www_3
+&lt;/Proxy&gt;
+
+ProxyPass / balancer://cluster/ ProxyPassReverse / balancer://cluster/
+</pre>
 <ul class="simple">
-<li>More fault tolerant</li>
-<li>Ready to scale</li>
-<li>Great learning experience</li>
+<li>Serves static files</li>
+<li>Responsible for web logs</li>
+<li>mod_proxy* has been known to leak memory</li>
+<li>SSL endpoint</li>
+<li>Rewrite rules</li>
 </ul></section>
             
           </div>
@@ -754,7 +817,7 @@ build no longer actively maintained.</td></tr>
             </aside>
             
             <aside class="page_number">
-              16/17
+              17/20
             </aside>
           </footer>
         </div>
@@ -762,7 +825,85 @@ build no longer actively maintained.</td></tr>
       
       <!-- slide source: slides.rst -->
       <div class="slide-wrapper">
-        <div class="slide slide17 questions">
+        <div class="slide slide18">
+          <div class="inner">
+            
+            <header><h1>Apache worker instances</h1></header>
+            
+            
+            <section><ul>
+<li><p class="first">Configure to behave like a WSGI daemon</p>
+<ul class="simple">
+<li>Only load needed modules</li>
+</ul>
+</li>
+<li><p class="first">Disable logging</p>
+<pre class="code literal-block">
+LogFormat &quot; &quot; empty
+# Below will never output anything, but it will create an empty file
+CustomLog &quot;D:/logs/carme/apache/access-1.log&quot; empty env=NOTHING_IS_LOGGED
+</pre>
+</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              18/20
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide19">
+          <div class="inner">
+            
+            <header><h1>Build and Deploy</h1></header>
+            
+            
+            <section><ul class="simple">
+<li>CruiseControl.net - <a class="reference external" href="http://www.cruisecontrolnet.org/">http://www.cruisecontrolnet.org/</a></li>
+<li>nAnt - <a class="reference external" href="http://nant.sourceforge.net">http://nant.sourceforge.net</a></li>
+<li><tt class="docutils literal">psexec</tt> for remote execution</li>
+<li>RedGate SQL Schema Compare</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              19/20
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide20 questions">
           <div class="inner">
             
             <header><h1>Questions And Feedback</h1></header>
@@ -794,7 +935,7 @@ build no longer actively maintained.</td></tr>
             </aside>
             
             <aside class="page_number">
-              17/17
+              20/20
             </aside>
           </footer>
         </div>
@@ -887,26 +1028,44 @@ build no longer actively maintained.</td></tr>
       
       
       <tr id="toc-row-14">
-        <th><a href="#slide14">Launch day surprise</a></th>
+        <th><a href="#slide14">Useful Apache Modules</a></th>
         <td><a href="#slide14">14</a></td>
       </tr>
       
       
       <tr id="toc-row-15">
-        <th><a href="#slide15">How We Worked Around It?</a></th>
+        <th><a href="#slide15">Understanding the GIL</a></th>
         <td><a href="#slide15">15</a></td>
       </tr>
       
       
       <tr id="toc-row-16">
-        <th><a href="#slide16">It's Not All Bad</a></th>
+        <th><a href="#slide16">Faking Process Based MPM</a></th>
         <td><a href="#slide16">16</a></td>
       </tr>
       
       
       <tr id="toc-row-17">
-        <th><a href="#slide17">Questions And Feedback</a></th>
+        <th><a href="#slide17">Load balancing Apache instance</a></th>
         <td><a href="#slide17">17</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-18">
+        <th><a href="#slide18">Apache worker instances</a></th>
+        <td><a href="#slide18">18</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-19">
+        <th><a href="#slide19">Build and Deploy</a></th>
+        <td><a href="#slide19">19</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-20">
+        <th><a href="#slide20">Questions And Feedback</a></th>
+        <td><a href="#slide20">20</a></td>
       </tr>
       
       
