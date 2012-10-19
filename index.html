@@ -825,7 +825,8 @@ LoadModule xsendfile_module &quot;D:/web/modules/mod_xsendfile.so&quot;
     BalancerMember http://192.168.1.100:9003 smax=3 max=10 ttl=120 route=www_3
 &lt;/Proxy&gt;
 
-ProxyPass / balancer://cluster/ ProxyPassReverse / balancer://cluster/
+ProxyPass / balancer://cluster/
+ProxyPassReverse / balancer://cluster/
 </pre>
 <ul class="simple">
 <li>Serves static files</li>

@@ -358,7 +358,8 @@ Basic balancer config
     	BalancerMember http://192.168.1.100:9003 smax=3 max=10 ttl=120 route=www_3
     </Proxy>
     
-    ProxyPass / balancer://cluster/ ProxyPassReverse / balancer://cluster/
+    ProxyPass / balancer://cluster/ 
+    ProxyPassReverse / balancer://cluster/
 
 - Serves static files
 - Responsible for web logs
