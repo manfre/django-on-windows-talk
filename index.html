@@ -62,12 +62,18 @@
             
             <section><p>Michael Manfre</p>
 
-<img alt="Clippy" src="images/clippy-help.png" /></section>
+<img alt="Clippy" src="images/clippy-help.png" />
+
+
+</section>
             
           </div>
           <div class="presenter_notes">
             <header><h1>Presenter Notes</h1></header>
             <section>
+            
+              <p>This talk will go over how I host a production Django site on windows, some the problems we faced, and decisions we made along the way.</p>
+<p>Plenty of time for questions at the end.</p>
             
             </section>
           </div>
@@ -213,18 +219,12 @@ that will invent the industries of tomorrow.&quot;</p>
             <header><h1>SRC's current web site</h1></header>
             
             
-            <section><img alt="SRC homepage screenshot" src="images/homepage-screenshot.png" />
-
-
-</section>
+            <section><img alt="SRC homepage screenshot" src="images/homepage-screenshot.png" /></section>
             
           </div>
           <div class="presenter_notes">
             <header><h1>Presenter Notes</h1></header>
             <section>
-            
-              <p>Previous distributions: Printed publications, Mailed CDs, Command line database.</p>
-<p>Generated VB6 files.</p>
             
             </section>
           </div>
@@ -253,7 +253,7 @@ that will invent the industries of tomorrow.&quot;</p>
 <ul class="simple">
 <li>Apache</li>
 <li>CruiseControl.net</li>
-<li>Django 1.4.1</li>
+<li>Django 1.4.2</li>
 <li>HAProxy (Ubuntu)</li>
 <li>Memcached</li>
 <li>Mercurial (Hg)</li>
@@ -381,19 +381,19 @@ that will invent the industries of tomorrow.&quot;</p>
 <li>SSIS jobs pump data from www to OpenVMS and master</li>
 </ul>
 </li>
-<li>Secondary factors against Django supported database _____<ul>
-<li>Oracle? Price</li>
-<li>Postgresql? Not recommended on Windows</li>
-<li>MySQL? Feature limited</li>
-<li>Sqlite? Not meant for production</li>
 </ul>
-</li>
-</ul></section>
+
+</section>
             
           </div>
           <div class="presenter_notes">
             <header><h1>Presenter Notes</h1></header>
             <section>
+            
+              <p>Secondary factors against Django supported database.
+Oracle: Price;
+Postgresql: Needed Cygwin;
+MySQL: Feature limited;</p>
             
             </section>
           </div>
@@ -486,7 +486,9 @@ that will invent the industries of tomorrow.&quot;</p>
 </ul>
 </li>
 </ul>
-</blockquote></section>
+</blockquote>
+
+</section>
             
           </div>
           <div class="presenter_notes">
@@ -564,20 +566,20 @@ that will invent the industries of tomorrow.&quot;</p>
 </tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id1" rules="none">
+<table class="docutils footnote" frame="void" id="id3" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label">[1]</td><td>Difficulty with automated build enviroment caused by changes between the various versions of
 IIS. Each OS and sometimes service pack provides a different IIS version.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
+<table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label">[2]</td><td>Orphans worker processes.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
+<table class="docutils footnote" frame="void" id="id5" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label">[3]</td><td>Several documented issues in release notes at time of evaluation in 2009-2010. Windows
@@ -923,7 +925,9 @@ CustomLog &quot;D:/logs/carme/apache/access-1.log&quot; empty env=NOTHING_IS_LOG
 <li>nAnt - <a class="reference external" href="http://nant.sourceforge.net">http://nant.sourceforge.net</a></li>
 <li><tt class="docutils literal">psexec</tt> for remote execution</li>
 <li>RedGate SQL Schema Compare</li>
-</ul></section>
+</ul>
+
+</section>
             
           </div>
           <div class="presenter_notes">
@@ -961,7 +965,13 @@ CustomLog &quot;D:/logs/carme/apache/access-1.log&quot; empty env=NOTHING_IS_LOG
 </ul>
 <pre class="code literal-block">
 virtualenv env --system-site-packages
-</pre></section>
+</pre>
+<ul class="simple">
+<li><tt class="docutils literal">pywin32</tt> installer issues with some version.<ul>
+<li>Only install for one python version on a machine</li>
+</ul>
+</li>
+</ul></section>
             
           </div>
           <div class="presenter_notes">
@@ -997,7 +1007,7 @@ Windows port of virtualenvwrapper.
 <a class="reference external" href="http://www.doughellmann.com/projects/virtualenvwrapper/">http://www.doughellmann.com/projects/virtualenvwrapper/</a></blockquote>
 <p>Install</p>
 <pre class="code literal-block">
-pip install virtualenvwrapper-win
+pip install virtualenvwrapper virtualenvwrapper-win
 </pre>
 <p>Create virtualenv</p>
 <pre class="code literal-block">

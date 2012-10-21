@@ -11,6 +11,14 @@ Michael Manfre
    :alt: Clippy
    :align: right
 
+
+Presenter Notes
+---------------
+
+This talk will go over how I host a production Django site on windows, some the problems we faced, and decisions we made along the way.
+
+Plenty of time for questions at the end.
+
 ----
 
 Michael Manfre
@@ -50,6 +58,7 @@ Semiconductor Research Corporation |reg|
 
 .. _`http://www.src.org/about/`: http://www.src.org/about/
 
+
 ----
 
 Web site purpose
@@ -77,12 +86,6 @@ SRC's current web site
    :alt: SRC homepage screenshot
    :align: right
 
-Presenter Notes
----------------
-
-Previous distributions: Printed publications, Mailed CDs, Command line database.
-  
-Generated VB6 files.
 
 ----
 
@@ -91,7 +94,7 @@ Powered By
 
   - Apache
   - CruiseControl.net
-  - Django 1.4.1
+  - Django 1.4.2
   - HAProxy (Ubuntu)
   - Memcached
   - Mercurial (Hg)
@@ -141,12 +144,13 @@ Why SQL Server?
   
   - SSIS jobs pump data from www to OpenVMS and master
 
-- Secondary factors against Django supported database _____
+Presenter Notes
+---------------
 
-  - Oracle? Price
-  - Postgresql? Not recommended on Windows
-  - MySQL? Feature limited
-  - Sqlite? Not meant for production
+Secondary factors against Django supported database. 
+Oracle: Price;
+Postgresql: Needed Cygwin;
+MySQL: Feature limited;
 
 ----
 
@@ -194,6 +198,10 @@ Future of Django-mssql
     - `http://django-mssql.readthedocs.org`_
     
 .. _`http://django-mssql.readthedocs.org`: http://django-mssql.readthedocs.org  
+
+Presenter Notes
+---------------
+
 
 ----
 
@@ -408,6 +416,10 @@ Build and Deploy
 .. _`http://www.cruisecontrolnet.org/`: http://www.cruisecontrolnet.org/
 .. _`http://nant.sourceforge.net`: http://nant.sourceforge.net
 
+Presenter Notes
+---------------
+
+
 ----
 
 Virtualenv
@@ -420,6 +432,11 @@ Virtualenv
 .. code::
 
      virtualenv env --system-site-packages
+
+
+- ``pywin32`` installer issues with some version.
+
+  - Only install for one python version on a machine
 
 ----
 
@@ -435,7 +452,7 @@ Install
 
 .. code::
     
-      pip install virtualenvwrapper-win
+      pip install virtualenvwrapper virtualenvwrapper-win
 
 Create virtualenv
 
